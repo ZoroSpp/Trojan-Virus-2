@@ -45,7 +45,7 @@ public class Spark : MonoBehaviour
                         speed = 0;
                         break;
                     case 1:
-                        if (checkClick)
+                        if (Input.GetKeyDown(KeyCode.Mouse0))
                         {
                             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -56,10 +56,10 @@ public class Spark : MonoBehaviour
                                 GameObject.Find("GridManager").GetComponent<Score>().scoreVal += 30;
                             }
                             else
+                            {
                                 GameObject.Find("GridManager").GetComponent<Score>().scoreVal -= 20;
-                            
+                            }
                             speed = 40;
-                            checkClick = false;
                             GenerateSpark();
                         }
                         if (Time.time >= freezeStart + freezeTime)
@@ -87,13 +87,13 @@ public class Spark : MonoBehaviour
         targetpos.y = (Random.Range(0,3)-1)*5.2f;
         targetpos.z = 0.0f;
         }
-    void OnMouseDown()
+    /*void OnMouseDown()
     {
         if (checkSt == 1)
         {
             checkClick = true;
         }
-            }
+            }*/
     void GenerateSpark()
     {
         int i = Random.Range(0, 3);
