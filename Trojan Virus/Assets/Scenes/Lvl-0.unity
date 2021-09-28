@@ -192,15 +192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2722845168280304881, guid: d5b39af3ec7668c4d8e064a34e625640, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2722845168280304881, guid: d5b39af3ec7668c4d8e064a34e625640, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2722845168280304881, guid: d5b39af3ec7668c4d8e064a34e625640, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2722845168280304881, guid: d5b39af3ec7668c4d8e064a34e625640, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2077,6 +2077,10 @@ PrefabInstance:
       propertyPath: sc
       value: 
       objectReference: {fileID: 1107820726}
+    - target: {fileID: 6596876263770528849, guid: 2ee545d7681cfde448b5c9dd1883225e, type: 3}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6596876263770528849, guid: 2ee545d7681cfde448b5c9dd1883225e, type: 3}
       propertyPath: SparkLs
       value: 

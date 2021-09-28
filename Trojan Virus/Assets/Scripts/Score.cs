@@ -17,6 +17,7 @@ public class Score : MonoBehaviour
     int x = 0,y=0;
     bool Sc150=false,Sc50=false;
     public float xt;
+    int i = 1, j = 1;
         //bool scoreupd=false;
     // Start is called before the first frame update
     void Start()
@@ -46,15 +47,19 @@ public class Score : MonoBehaviour
                 case 1:
                     if (Time.time < infoST + infoTP)
                     {
-                        if (scoreVal >= 150 && !Sc150)
+                        if (scoreVal >= i*150 && !Sc150)
                         {
+                            i++;
+                            Info2.color = Color.blue;
                             Info2.text = "You have gained a brain!!";
-                            Sc150 = true;
+                            //Sc150 = true;
                         }
-                        else if (scoreVal <= -50 && !Sc50)
+                        else if (scoreVal <=j* -50 && !Sc50)
                         {
+                            j++;
+                            Info2.color = Color.red;
                             Info2.text = "You have lost a brain!!";
-                            Sc50 = true;
+                            //Sc50 = true;
 
                         }
 
@@ -70,6 +75,8 @@ public class Score : MonoBehaviour
         }
         else
         {
+            i = 1;
+            j = 1;
             Sc150 = false;
             Sc50 = false;
         }
@@ -88,9 +95,15 @@ public class Score : MonoBehaviour
                     if (Time.time < infoST + infoTP)
                     {
                         if (valChn > 0)
+                        {
+                            Info.color = Color.green;
                             Info.text = "+" + valChn;
+                        }
                         else
+                        {
+                            Info.color = Color.red;
                             Info.text = "" + valChn;
+                        }
                     }
                     else
                     {
