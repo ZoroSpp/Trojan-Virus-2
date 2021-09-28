@@ -15,6 +15,7 @@ public class Spark : MonoBehaviour
     public bool CheckClkna = checkClick;
     public int checkStna = checkSt;
     GameObject spark;
+    bool hasended=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,57 +27,60 @@ public class Spark : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkStna = checkSt;
-        CheckClkna = checkClick;
-        if (pos.position != targetpos)
+        if (GameObject.Find("GridManager").GetComponent<Score>().xt >= 20)
+            hasended = true;
+        if (!hasended)
         {
-            pos.position=Vector3.MoveTowards(pos.position,targetpos,speed*Time.deltaTime);
-        }
-
-        else
-        {
-            if (Time.time >= Sparktime + timelapse)
+            if (pos.position != targetpos)
             {
-                switch (checkSt)
-                {
-                    case 0:
-                        freezeStart = Time.time;
-                        checkSt = 1;
-                        speed = 0;
-                        break;
-                    case 1:
-                        if (Input.GetKeyDown(KeyCode.Mouse0))
-                        {
-                            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-                            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-                            if (hit.collider.tag == "Player")
-                            {
-                                GameObject.Find("GridManager").GetComponent<Score>().scoreVal += 30;
-                            }
-                            else
-                            {
-                                GameObject.Find("GridManager").GetComponent<Score>().scoreVal -= 20;
-                            }
-                            speed = 40;
-                            GenerateSpark();
-                        }
-                        if (Time.time >= freezeStart + freezeTime)
-                        {
-                           
-                            Sparktime = Time.time;
-                            timelapse = Random.Range(4, 10) * 0.2f;
-                            speed = 40;
-                            checkSt= 0;
-                            TargetPos();
-                        }
-                        break;
-                }
+                pos.position = Vector3.MoveTowards(pos.position, targetpos, speed * Time.deltaTime);
             }
+
             else
             {
-                TargetPos();
+                if (Time.time >= Sparktime + timelapse)
+                {
+                    switch (checkSt)
+                    {
+                        case 0:
+                            freezeStart = Time.time;
+                            checkSt = 1;
+                            speed = 0;
+                            break;
+                        case 1:
+                            if (Input.GetKeyDown(KeyCode.Mouse0))
+                            {
+                                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+                                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                                if (hit.collider.tag == "Player")
+                                {
+                                    GameObject.Find("GridManager").GetComponent<Score>().scoreVal += 30;
+                                }
+                                else
+                                {
+                                    GameObject.Find("GridManager").GetComponent<Score>().scoreVal -= 20;
+                                }
+                                speed = 40;
+                                GenerateSpark();
+                            }
+                            if (Time.time >= freezeStart + freezeTime)
+                            {
+
+                                Sparktime = Time.time;
+                                timelapse = Random.Range(4, 10) * 0.2f;
+                                speed = 40;
+                                checkSt = 0;
+                                TargetPos();
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    TargetPos();
+                }
             }
         }
 

@@ -5,6 +5,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField] Text score;
     [SerializeField] Text Info;
+    [SerializeField] Text tim;
     [SerializeField] GameObject spark;
     [SerializeField] Spark sc;
     [SerializeField] Text Info2;
@@ -12,12 +13,17 @@ public class Score : MonoBehaviour
     int InVal, valChn;
     float infoST,infoST2;
     [SerializeField]float infoTP;
+    float gameSt;
     int x = 0,y=0;
     bool Sc150=false,Sc50=false;
+    public float xt;
         //bool scoreupd=false;
     // Start is called before the first frame update
     void Start()
     {
+        xt = 0;
+        tim.text = "Time - " + xt;
+        gameSt = Time.time;
         Info.text = " ";
         InVal = scoreVal;
         scoreVal = 0;
@@ -27,6 +33,8 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        xt = Time.time - gameSt;
+        tim.text = "Time - " + (int)xt;
         if ((scoreVal >= 150) || (scoreVal <= -50))
         {
             switch (y)
