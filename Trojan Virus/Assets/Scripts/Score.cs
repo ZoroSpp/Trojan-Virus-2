@@ -6,6 +6,7 @@ public class Score : MonoBehaviour
     [SerializeField] Text score;
     [SerializeField] Text Info;
     [SerializeField] Text tim;
+    [SerializeField] Text Gamecmp;
     [SerializeField] GameObject spark;
     [SerializeField] Spark sc;
     [SerializeField] Text Info2;
@@ -22,6 +23,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Gamecmp.text = "";
         xt = 0;
         tim.text = "Time - " + xt;
         gameSt = Time.time;
@@ -34,8 +36,28 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xt = Time.time - gameSt;
+        if (Input.GetKeyDown(KeyCode.Return))
+            Debug.Log("Hekk");
         tim.text = "Time - " + (int)xt;
+        if(xt<=20)
+            xt = Time.time - gameSt;
+        else
+        {
+            if(scoreVal<=150)
+            {
+                Gamecmp.color = Color.red;
+                Gamecmp.text = "Game Over\n+ "+scoreVal;
+                            }
+            else
+            {
+                Gamecmp.color = Color.blue;
+                Gamecmp.text = "Level Complete\n" + scoreVal;
+            }
+            Info2.color = Color.black;
+            Info2.fontStyle = FontStyle.Italic;
+            Info2.text = "Press ENTER to continue";
+        }
+            
         if ((scoreVal >= 150) || (scoreVal <= -50))
         {
             switch (y)
